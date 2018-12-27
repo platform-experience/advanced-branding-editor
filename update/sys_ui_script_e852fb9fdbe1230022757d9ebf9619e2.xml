@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <name>x_si_abe.ngAbe</name>
+        <script><![CDATA[angular.module('ngAbe', [])
+    .service('ngAbeControl', function ($location) {
+
+        var portalWatchers = [];
+        var groupWatchers = [];
+
+        if ($location.search().spa !== '1') {
+            $location.search('spa', '1');
+        }
+
+        function setPortal(portal) {
+            $location.search('sys_id', portal.sysId);
+            $location.search('group_id', portal.defaultGroupId);
+
+            portalWatchers.forEach(function (cv) {
+                cv(portal);
+            });
+        }
+
+        function setGroup(group) {
+            $location.search('group_id', group.sysId);
+
+            groupWatchers.forEach(function (cv) {
+                cv(group);
+            });
+        }
+
+        function setPortalWatcher(func) {
+            portalWatchers.push(func);
+        }
+
+        function setGroupWatcher(func) {
+            groupWatchers.push(func);
+        }
+
+        return {
+            setPortal: setPortal,
+            setGroup: setGroup,
+            setPortalWatcher: setPortalWatcher,
+            setGroupWatcher: setGroupWatcher
+        };
+
+    })
+    .service('ngAbeHighlighter', function () {
+
+        var func;
+
+        function init(f) {
+            func = f;
+        }
+
+        function activate(selector) {
+            return func(selector);
+        }
+
+        return {
+            activate: activate,
+            init: init
+        };
+    });]]></script>
+        <script_name>ngAbe</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-11-09 04:10:00</sys_created_on>
+        <sys_id>e852fb9fdbe1230022757d9ebf9619e2</sys_id>
+        <sys_mod_count>110</sys_mod_count>
+        <sys_name>x_si_abe.ngAbe</sys_name>
+        <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
+        <sys_update_name>sys_ui_script_e852fb9fdbe1230022757d9ebf9619e2</sys_update_name>
+        <sys_updated_by>dylan.lindgren</sys_updated_by>
+        <sys_updated_on>2018-12-21 00:30:20</sys_updated_on>
+        <ui_type>1</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

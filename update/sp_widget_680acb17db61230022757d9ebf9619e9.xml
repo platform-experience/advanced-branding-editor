@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function AdvancedBrandingEditorCtrl () {
+	let c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>#abe {
+  position: absolute;
+  height: calc(100%);
+  padding: 10px;
+  margin-top: -10px;
+  
+  left: 0;
+  width: 100%;
+  
+  display: grid;
+  
+  grid-template-columns: 400px 1fr;
+  grid-template-rows: auto 1fr;
+  grid-gap: 10px;
+}
+
+.abe-control {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.abe-editor {
+	grid-column: 1 / span 1;
+  grid-row: 2 / span 1;
+}
+
+.abe-preview {
+	grid-column: 2 / span 1;
+  grid-row: 1 / span 2;
+  position: relative
+}
+
+div[widget] {
+	display: contents;
+}
+
+#abe-control {
+	margin-bottom: 10px;
+}
+
+#abe-loading {
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.3) 0%,rgba(255,255,255,0.5) 40%,rgba(255,255,255,1) 100%);
+  font-color: white;
+  font-size: 50px;
+  text-align: center;
+  position: absolute;
+  top:0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  
+  div {
+  	display: contents;
+  }
+  
+  svg {
+  	height: 100%;
+    width: 100%;
+    
+    circle {
+    	stroke: rgb(58,63,81);
+    }
+  }
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>abe-main</id>
+        <internal>false</internal>
+        <link><![CDATA[function (scope) {
+
+	var $rootScope = $injector.get('$rootScope');
+	var $timeout = $injector.get('$timeout');
+
+	scope.loading = true;
+
+	$rootScope.$on('abe.preview.loading',function () {
+		scope.loading = true;
+
+		$timeout(function () {
+			scope.loading = false;
+		}, 2000);
+	});
+
+	$rootScope.$on('abe.preview.loaded', function () {
+		scope.loading = false;
+	});
+
+}]]></link>
+        <name>Advanced Branding Editor</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+
+	data.sysId = $sp.getParameter('sys_id');
+	data.groupId = $sp.getParameter('group_id');
+
+	if (!data.sysId) {
+		var portalGr = new GlideRecord('sp_portal');
+		portalGr.addQuery('default', '1');
+		portalGr.query();
+
+		if (portalGr.next()) {
+			data.sysId = portalGr.getUniqueValue();
+		}
+	}
+
+	var gr = new GlideRecord('sp_portal');
+
+	if (gr.get(data.sysId)) {
+
+		data.portal = {
+			title: gr.getDisplayValue('title'),
+			urlSuffix: gr.getValue('url_suffix'),
+			theme: gr.getValue('theme'),
+			sysId: gr.getUniqueValue()
+		};
+	}
+
+	var grpGr = new GlideRecord('x_si_abe_variable_group');
+
+	if (data.groupId) {
+		grpGr.get(data.groupId);
+	} else {
+		grpGr.addQuery('portal', data.portal.sysId);
+		grpGr.setLimit(1);
+		grpGr.orderBy('order');
+		grpGr.query();
+		grpGr.next();
+	}
+
+	data.group = {
+		sysId: grpGr.getUniqueValue(),
+		name: grpGr.getDisplayValue(),
+		order: parseInt(grpGr.getValue('order')),
+		search: grpGr.getValue('search')
+	}
+
+	data.opts = {
+		portal: data.portal,
+		group: data.group
+	}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-11-09 01:13:11</sys_created_on>
+        <sys_id>680acb17db61230022757d9ebf9619e9</sys_id>
+        <sys_mod_count>106</sys_mod_count>
+        <sys_name>Advanced Branding Editor</sys_name>
+        <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
+        <sys_update_name>sp_widget_680acb17db61230022757d9ebf9619e9</sys_update_name>
+        <sys_updated_by>dylan.lindgren</sys_updated_by>
+        <sys_updated_on>2018-12-27 00:43:06</sys_updated_on>
+        <template><![CDATA[<div id="abe">
+  <div class="abe-control">
+    <widget id="abe-control" options="data.opts"></widget>
+  </div>
+  <div class="abe-editor">
+    <widget id="abe-editor" options="data.opts"></widget>
+  </div>
+  <div class="abe-preview">
+    <widget id="abe-preview" options="data.opts"></widget>
+    <div id="abe-loading" ng-if="loading">
+      <div ng-include="'/si-abe-loading.svg'"></div>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

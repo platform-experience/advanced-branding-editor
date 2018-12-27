@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_css_include">
+    <sp_css_include action="INSERT_OR_UPDATE">
+        <name>AbeBSCPStyles</name>
+        <source>local</source>
+        <sp_css display_value="AbeBSCPStyles">38576f73db12af00687c26b38a9619e8</sp_css>
+        <sys_class_name>sp_css_include</sys_class_name>
+        <sys_created_by>dylan.lindgren</sys_created_by>
+        <sys_created_on>2018-12-17 23:25:42</sys_created_on>
+        <sys_id>52676f73db12af00687c26b38a961923</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>AbeBSCPStyles</sys_name>
+        <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
+        <sys_update_name>sp_css_include_52676f73db12af00687c26b38a961923</sys_update_name>
+        <sys_updated_by>dylan.lindgren</sys_updated_by>
+        <sys_updated_on>2018-12-17 23:25:42</sys_updated_on>
+        <url/>
+    </sp_css_include>
+</record_update>

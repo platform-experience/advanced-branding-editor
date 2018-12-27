@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function AbeEditorCtrl ($scope, $rootScope, ngAbeControl) {
+
+	let c = this;
+
+	c.changeGroup = changeGroup;
+
+	c.$onInit = function () {
+
+		let properties = c.data.varString.match(/\$(.*?):(.*?);/g);
+
+		c.vars = {};
+
+		properties.forEach(function (cv) {
+			let name = cv.slice(0, cv.indexOf(':'));
+			c.vars[name] = cv.slice(cv.indexOf(':') + 1, cv.length).replace(';', '').trim();
+		});
+	};
+
+	ngAbeControl.setPortalWatcher(function (portal) {
+		c.server.get({
+			sysId: portal.sysId
+		}).then(function (r) {
+			c.data = r.data;
+			c.$onInit();
+		});
+	});
+
+	function changeGroup (group) {
+		c.data.groupId = group.sysId;
+		ngAbeControl.setGroup(group);
+	}
+
+	$scope.$on('abe.variable.save', function (e, d) {
+		c.server.get({
+			action: 'saveSassVar',
+			sassVar: d.vbl,
+			value: d.val,
+			sysId: c.data.sysId
+		}).then(function (r) {
+			c.data.variables = r.data.variables;
+			c.data.groups = r.data.groups;
+			c.data.varString = r.data.varString;
+			c.$onInit();
+			$rootScope.$broadcast('abe.preview.reload');
+		});
+	});
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>#abe-editor {
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  .abe-var-head {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .abe-vh-show {
+    a {
+      cursor: pointer;
+      font-size: 10px;
+      border-bottom: 1px #428bca dotted;
+      margin-right: 3px;
+
+      &amp;:hover {
+        border-bottom-color: #2a6496;
+      }
+    }
+  }
+
+  .abe-vh-reset {
+    text-align: right;
+    button {
+      font-size: 10px;
+      padding: 0;
+    }
+  }
+
+  .panel-heading {
+    padding: 0 10px;
+  }
+
+  .panel-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 49.6px;
+
+    div {
+      padding: 10px 0;
+    }
+
+    button {
+      padding: 5px 10px;
+      border-radius: 4px;
+      background-color: white;
+      border: 1px solid #ddd;
+    }
+  }
+
+  .panel-body:not(:last-of-type) {
+    border-bottom: 1px solid #eee;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 10px 0 0 0;
+  margin-bottom: 10px;
+}
+
+li {
+  margin: 0 0 30px 0;
+  font-weight: 300;
+  position: static;
+
+  &amp;:last-of-type {
+    margin: 0;
+  }
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 5px 10px;
+  border: 0;
+
+  &amp;:disabled {
+    background-color: white;
+  }
+}
+
+.abe-unit  {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 1px 1px 1px #ccc;
+  border-left: 1px solid #eee;
+  border-top: 1px solid #eee;
+  border-radius: 4px;
+  background: white;
+
+  input {
+    flex: 1 1 100%;
+    margin-right: 10px;
+    border-radius: 4px 0 0 4px;
+    background: white;
+    border: 0;
+    width: auto;
+  }
+
+  select {
+    flex: 0 0 40px;
+    border: 0;
+    border-left: 1px solid #eee;
+    border-radius: 0 4px 4px 0;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+}
+
+.abe-e-container {
+  height: 100%;
+  position: absolute;
+  overflow-x: scroll;
+  overflow-y: visible;
+  width: calc(100% + 10px);
+  padding: 0 15px 0 0;
+}
+
+.abe-cp-color {
+  min-height: 20px;
+  padding: 3px 5px;
+  border-radius: 0 4px 4px 0;
+  flex: 0 0 40px;
+  position: relative;
+  margin-right: -1px;
+  border-left: 1px solid #eee;
+}
+
+.abe-image {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f4f4f4;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+
+  .abe-i-instruction {
+    text-transform: uppercase;
+    font-weight: bold;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: white;
+    text-shadow: 0 0 1px black;
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  &amp;:hover .abe-i-instruction {
+    display: flex;
+  }
+
+  input {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    position: absolute;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 200px;
+  }
+}
+
+.abe-cp {
+  display: flex;
+  cursor: pointer;
+  border-radius: 4px;
+  background: white;
+  box-shadow: 1px 1px 1px #ccc;
+  border: 1px solid #eee;
+  border-bottom-width: 0;
+  position: relative;
+
+  .abe-cp-popup {
+    position: absolute;
+    width: 100%;
+    right: 0;
+    z-index: 200;
+    top: 100%;
+
+    .dropdown-menu {
+      left: auto;
+      right: 5px;
+      top: 2px;
+    }
+  }
+
+  input {
+    border-radius: 4px 0 0 4px;
+    margin: 0;
+    border: 0;
+    padding: 5px 10px;
+    flex: 1 1 100%;
+  }
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>abe-editor</id>
+        <internal>false</internal>
+        <link/>
+        <name>ABE Editor</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function () {
+
+    data.sysId = input ? input.sysId : options.portal.sysId;
+    data.groupId = $sp.getParameter('group_id') ? $sp.getParameter('group_id') : false;
+
+    var portalGr = new GlideRecord('sp_portal');
+    portalGr.get(data.sysId);
+
+    data.varString = portalGr.getValue('css_variables') || ' ';
+
+    if (input && input.action === 'saveSassVar') {
+
+        var rgx = new RegExp('(\\' + input.sassVar + ':)(.*?)(;)');
+
+        if (data.varString.indexOf(input.sassVar) !== -1) {
+            data.varString = data.varString.replace(rgx, '$1 ' + input.value + '$3');
+        } else {
+            data.varString = data.varString + '\n' + input.sassVar + ': ' + input.value + ';';
+        }
+
+        portalGr.setValue('css_variables', data.varString);
+        portalGr.update();
+
+    }
+
+    var gr = new GlideRecord('x_si_abe_variable');
+    gr.addQuery('variable_group.portal', portalGr.getUniqueValue());
+    gr.orderBy('variable_group.order');
+    gr.orderBy('variable_group');
+    gr.query();
+
+    data.variables = {};
+    data.groups = [];
+
+    while (gr.next()) {
+
+        if (!data.variables[gr.getValue('variable_group')]) {
+
+            var varGrp = gr.variable_group.getRefRecord();
+
+            data.variables[gr.getValue('variable_group')] = {};
+
+            data.groups.push({
+                sysId: varGrp.getUniqueValue(),
+                name: varGrp.getDisplayValue(),
+                order: parseInt(varGrp.getValue('order')),
+                search: varGrp.getValue('search')
+            });
+
+        }
+
+        if (!data.variables[gr.getValue('variable_group')][gr.getValue('type')]) {
+            data.variables[gr.getValue('variable_group')][gr.getValue('type')] = {
+                label: gr.getDisplayValue('type'),
+                vars: []
+            };
+        }
+
+        data.variables[gr.getValue('variable_group')][gr.getValue('type')].vars.push({
+            name: gr.getValue('name'),
+            type: gr.getValue('type'),
+            sassVar: gr.getValue('sass_variable'),
+            description: gr.getValue('description'),
+            defaultVal: gr.getValue('default'),
+            cssSelector: gr.getValue('css_selector'),
+            order: parseInt(gr.getValue('order'))
+        });
+    }
+
+    if (!data.groupId && data.groups.length > 0) {
+        data.groupId = data.groups[0].sysId;
+    }
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-11-09 01:12:07</sys_created_on>
+        <sys_id>85c90793db61230022757d9ebf961941</sys_id>
+        <sys_mod_count>619</sys_mod_count>
+        <sys_name>ABE Editor</sys_name>
+        <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
+        <sys_update_name>sp_widget_85c90793db61230022757d9ebf961941</sys_update_name>
+        <sys_updated_by>dylan.lindgren</sys_updated_by>
+        <sys_updated_on>2018-12-27 02:17:55</sys_updated_on>
+        <template><![CDATA[<div id="abe-editor">
+    <div class="abe-e-container">
+        <div class="panel panel-default"
+             ng-repeat="group in c.data.groups">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    <div>{{::group.name}}</div>
+                    <div>
+                        <button ng-if="group.sysId !== c.data.groupId"
+                                ng-click="c.changeGroup(group)">${Edit}
+                        </button>
+                    </div>
+
+                </h2>
+            </div>
+            <div>
+                <div ng-repeat="val in c.data.variables[c.data.groupId]"
+                     ng-if="group.sysId === c.data.groupId"
+                     class="panel-body">
+                    <ul>
+                        <li ng-repeat="var in ::val.vars | orderBy:'order'">
+                            <ng-abe-variable av-var="::var"
+                                             av-val="c.vars[var.sassVar]"></ng-abe-variable>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="c.data.groups.length === 0" class="alert alert-info">
+        <p><strong>${Nothing to configure!} =(</strong></p>
+        <p>${It looks like this portal hasn't been configured for use with the Advanced Branding Editor yet}</p>
+        <p>You might want to try configuring this portal with the regular branding editor.</p>
+    </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

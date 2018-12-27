@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="db_image">
+    <db_image action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>Service Portal</category>
+        <format/>
+        <height/>
+        <image>6fb9ec5cdb66af003efe6f048a96193e</image>
+        <name>si-abe-loading.svg</name>
+        <size_bytes>1460</size_bytes>
+        <sys_class_name>db_image</sys_class_name>
+        <sys_created_by>dylan.lindgren</sys_created_by>
+        <sys_created_on>2018-12-18 22:53:54</sys_created_on>
+        <sys_id>2aa9209cdb66af003efe6f048a9619e0</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>si-abe-loading.svg</sys_name>
+        <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
+        <sys_update_name>db_image_2aa9209cdb66af003efe6f048a9619e0</sys_update_name>
+        <sys_updated_by>dylan.lindgren</sys_updated_by>
+        <sys_updated_on>2018-12-18 22:53:59</sys_updated_on>
+        <thumbnail/>
+        <width/>
+    </db_image>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color/>
+        <chunk_size_bytes>734003</chunk_size_bytes>
+        <compressed>true</compressed>
+        <content_type>image/svg+xml</content_type>
+        <file_name>image</file_name>
+        <image_height/>
+        <image_width/>
+        <size_bytes>1460</size_bytes>
+        <size_compressed>399</size_compressed>
+        <state/>
+        <sys_created_by>dylan.lindgren</sys_created_by>
+        <sys_created_on>2018-12-18 22:53:59</sys_created_on>
+        <sys_id>6fb9ec5cdb66af003efe6f048a96193e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>dylan.lindgren</sys_updated_by>
+        <sys_updated_on>2018-12-18 22:53:59</sys_updated_on>
+        <table_name>ZZ_YYdb_image</table_name>
+        <table_sys_id>2aa9209cdb66af003efe6f048a9619e0</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>H4sIAAAAAAAAAA==</data>
+        <length>16</length>
+        <position>0</position>
+        <sys_attachment display_value="image" sys_id="6fb9ec5cdb66af003efe6f048a96193e">6fb9ec5cdb66af003efe6f048a96193e</sys_attachment>
+        <sys_created_by>dylan.lindgren</sys_created_by>
+        <sys_created_on>2018-12-18 22:53:59</sys_created_on>
+        <sys_id>afb9ec5cdb66af003efe6f048a96193e</sys_id>
+    </sys_attachment_doc>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>7VRNT8MwDL3zK0y4gETbtOvGx9ppwAUhxmX8gax124g0mdJ0Xfn1JNuQQOOAEJqERA6Olbzn2C+Wk2PPg9se5qyGe9QL1AZOp01l3bNzKJQGXKHulUQfZkojTKEyZnkdBKVSfimCi5uH18UjeN7kKGlWJXQ8N1VK4phAhbyszNZfcexu1TolFCjEMbizdS1kk5JdvK7r/G7gK10GEaU0sMEINEarF0zJSVEUZHIEdiUlFFyIlEibFNn4nm6FBdlMpcrzd5a3SyXaETfkjOtMIGQ2kygikPXbXack/ADbQJnkNTMIzBjNF63BJ1bbVzT5BHNrgSWXtrSGQN66UP5ls49aMdGirTccQ0T3rzMmspnK7QvNUnBb2h7iBftnXrsQdAzhl/fzDdUh/HA0PAfqX8bOxtZ+wdC4RGbuVCvtN3GZY8ElN1bV4Hta7IRWS5Zx0/+CMAfQZeD0GIXODobDH8uSBNtWOlBvedS/+m+vX9Dmr3ZYEpR2wrqpOHkDnqxtlrQFAAA=</data>
+        <length>520</length>
+        <position>1</position>
+        <sys_attachment display_value="image" sys_id="6fb9ec5cdb66af003efe6f048a96193e">6fb9ec5cdb66af003efe6f048a96193e</sys_attachment>
+        <sys_created_by>dylan.lindgren</sys_created_by>
+        <sys_created_on>2018-12-18 22:53:59</sys_created_on>
+        <sys_id>23b9ec5cdb66af003efe6f048a96193f</sys_id>
+    </sys_attachment_doc>
+</record_update>

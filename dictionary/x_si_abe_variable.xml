@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="update_synch=true" extends="sys_metadata" label="Variable" max_length="40" name="x_si_abe_variable" type="collection">
+        <element label="CSS selector" max_length="256" name="css_selector" type="string"/>
+        <element label="Default" max_length="1024" name="default" type="string"/>
+        <element label="Description" max_length="1024" name="description" type="string"/>
+        <element display="true" label="Name" mandatory="true" max_length="96" name="name" type="string"/>
+        <element attributes="edge_encryption_enabled=true" default="100" label="Order" max_length="40" name="order" type="integer"/>
+        <element label="SASS variable" mandatory="true" max_length="128" name="sass_variable" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Scroll to" max_length="40" name="scroll_to" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" choice="3" default="color" label="Type" mandatory="true" max_length="40" name="type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Image" value="image"/>
+                <element inactive_on_update="false" label="Color" sequence="1" value="color"/>
+                <element inactive_on_update="false" label="Resource URL" sequence="2" value="resource_url"/>
+                <element inactive_on_update="false" label="Unit" sequence="3" value="unit"/>
+                <element inactive_on_update="false" label="Percentage" sequence="4" value="percentage"/>
+                <element inactive_on_update="false" label="Border radius" sequence="5" value="border_radius"/>
+                <element inactive_on_update="false" label="Background" sequence="6" value="background"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="Variable group" mandatory="true" max_length="32" name="variable_group" reference="x_si_abe_variable_group" type="reference"/>
+        <index name="index">
+            <element name="variable_group"/>
+        </index>
+    </element>
+</database>
