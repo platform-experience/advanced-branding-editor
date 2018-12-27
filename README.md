@@ -2,7 +2,7 @@ Advanced Branding Editor
 ==================
 The Advanced Branding Editor application allows you to define branding options for custom portals, and configure them in a user friendly interface similar to that of the regular Branding Editor.
 
-The regular Branding Editor allows configuration of the out-of-box Service Portal, however the hard-coded "bootstrap" styles defined in there for are severly limiting when applied to custom portals, or other Service Portal's offered by product lines such as Human Resources or Customer Service Management. Advanced Branding Editor offers greater flexibility in this regard - you can define as many variables as you want per portal, label them in a relevant way, and allow for simple configuration for any type of portal.
+The regular Branding Editor allows configuration of the out-of-box Service Portal, however the hard-coded "bootstrap" styles defined in there are severly limiting when applied to custom portals, or other Service Portal's offered by product lines such as Human Resources or Customer Service Management. Advanced Branding Editor offers greater flexibility in this regard - you can define as many variables as you want per portal, label them in a relevant way, and allow for simple configuration for any type of portal.
 
 There are various other features and usability improvements over the out-of-box branding editor. Some examples are:
 
