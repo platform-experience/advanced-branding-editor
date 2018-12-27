@@ -4,8 +4,7 @@ Advanced Branding Editor allows you to define branding options for custom portal
 
 Screenshots
 -------------------
-
-TODO
+<img src="abe.png">
 
 Installaton
 -------------------
