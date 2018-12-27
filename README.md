@@ -28,8 +28,9 @@ Installaton
 
 How it works
 -------------------
+The one prerequisite for the Advanced Branding Editor to work correctly is that your portal (and the widgets that make it up) have semantic and useable heirachy of SASS.
 
-TODO
+When loading the editor, the Branding Groups and Branding Variables tables will be scanned for relevant records to the selected portal. The SASS contained in the portal record will also be loaded, and the current value of each variable will be taken from it using a regular expression. Upon changing a variable's setting in the user interface, the value will be saved back into the SASS of the portal record again using a regular expression.
 
 Usage
 -------------------
