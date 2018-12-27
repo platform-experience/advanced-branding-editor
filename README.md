@@ -1,6 +1,15 @@
 Advanced Branding Editor
 ==================
-Advanced Branding Editor allows you to define branding options for custom portals, and configure them using a user friendly interface. The regular branding editor only allows configuration of the out-of-box Service Portal, and the hard-coded variables defined in there are not particularly relevant to custom portals, or other product Service Portal's such as HR or CSM.
+Advanced Branding Editor allows you to define branding options for custom portals, and configure them using a user friendly interface similar to that of the regular Branding Editor.
+
+The regular Branding Editor allows configuration of the out-of-box Service Portal, however the hard-coded fields defined in there for the out-of-box Service Portal are not particularly relevant to custom portals, or other product Service Portal's such as HR or CSM. Advanced Branding Editor offers greater flexibility in this regard - you can define as many variables as you want, custom labeled and configurable for individual portals.
+
+It also offers other features and usability improvements over the out-of-box branding editor, such as:
+
+- "Show me" functionality to show on the preview where the particular element you'll be configuring is.
+- "Reset" functionality to reset a variable back to it's default state.
+- Image fields
+- Portal select dropdown allows filtering
 
 Screenshots
 -------------------
