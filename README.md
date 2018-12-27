@@ -10,12 +10,14 @@ There are various other features and usability improvements over the out-of-box 
 - Reset a variable back to it's default state using the Reset button.
 - Upload new images and replace them.
 - Portal select dropdown allows filtering.
+- Each variable group can have a different "Search" string, meaning that a different page can be shown rather than just the home page. This is helpful when the variable you're editing isn't used on the home page.
 
 Screenshots
 -------------------
 
 <img src="screenshot.png">
 
+The below took about a minute and a half, with no code, to dramatically change the branding of a completely custom portal.
 <img src="abe.png">
 
 Installaton
