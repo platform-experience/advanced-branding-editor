@@ -5,29 +5,36 @@
 
     function link(scope) {
 
-        let re = /(?:([\d\.]*)(\D*))/g;
-        let match = re.exec(scope.abeValue);
-
         scope.units = ['px', 'em', 'vh', 'rem'];
 
-        scope.previous = {
-            val: match[1],
-            unit: match[2]
+        let re = /(?:([\d\.]*)(\D*))/g;
+
+        function parseUnit(val) {
+
+            let match = re.exec(val);
+
+            scope.previous = {
+                val: match[1],
+                unit: match[2]
+            };
+
+            scope.current = {
+                val: match[1],
+                unit: match[2]
+            };
+
+            return val;
+        }
+
+        scope.addResetProcessor(parseUnit);
+        scope.addLoadProcessor(parseUnit);
+
+        scope.change = function () {
+            scope.value = scope.current.val + scope.current.unit;
+            scope.save(scope.vbl.sassVar, scope.value);
         };
 
-        scope.current = {
-            val: match[1],
-            unit: match[2]
-        };
-
-        scope.save = function () {
-            if (scope.current.val !== scope.previous.val || scope.current.unit !== scope.previous.unit) {
-                scope.abeChange({
-                    sassVar: scope.abeVarData.sassVar,
-                    value: scope.current.val + scope.current.unit
-                });
-            }
-        };
+        scope.init();
     }
 
     return {
@@ -40,14 +47,14 @@
         <sys_created_by>dylan.lindgren</sys_created_by>
         <sys_created_on>2018-12-21 00:23:14</sys_created_on>
         <sys_id>1651dbf8db2e23403efe6f048a9619df</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>32</sys_mod_count>
         <sys_name>ngAbeUnitVar</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>sp_angular_provider_1651dbf8db2e23403efe6f048a9619df</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2018-12-24 00:01:23</sys_updated_on>
+        <sys_updated_on>2018-12-27 03:43:24</sys_updated_on>
         <type>directive</type>
     </sp_angular_provider>
 </record_update>

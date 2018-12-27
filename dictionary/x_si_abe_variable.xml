@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element attributes="update_synch=true" extends="sys_metadata" label="Variable" max_length="40" name="x_si_abe_variable" type="collection">
+    <element attributes="update_synch=true" extends="sys_metadata" label="Branding Variable" max_length="40" name="x_si_abe_variable" type="collection">
         <element label="CSS selector" max_length="256" name="css_selector" type="string"/>
         <element label="Default" max_length="1024" name="default" type="string"/>
         <element label="Description" max_length="1024" name="description" type="string"/>
