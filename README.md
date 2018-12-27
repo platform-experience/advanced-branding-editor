@@ -1,15 +1,15 @@
 Advanced Branding Editor
 ==================
-Advanced Branding Editor allows you to define branding options for custom portals, and configure them using a user friendly interface similar to that of the regular Branding Editor.
+The Advanced Branding Editor application allows you to define branding options for custom portals, and configure them in a user friendly interface similar to that of the regular Branding Editor.
 
-The regular Branding Editor allows configuration of the out-of-box Service Portal, however the hard-coded fields defined in there for the out-of-box Service Portal are not particularly relevant to custom portals, or other product Service Portal's such as HR or CSM. Advanced Branding Editor offers greater flexibility in this regard - you can define as many variables as you want, custom labeled and configurable for individual portals.
+The regular Branding Editor allows configuration of the out-of-box Service Portal, however the hard-coded "bootstrap" styles defined in there for are severly limiting when applied to custom portals, or other Service Portal's offered by product lines such as Human Resources or Customer Service Management. Advanced Branding Editor offers greater flexibility in this regard - you can define as many variables as you want per portal, label them in a relevant way, and allow for simple configuration for any type of portal.
 
-It also offers other features and usability improvements over the out-of-box branding editor, such as:
+There are various other features and usability improvements over the out-of-box branding editor. Some examples are:
 
-- "Show me" functionality to show on the preview where the particular element you'll be configuring is.
-- "Reset" functionality to reset a variable back to it's default state.
-- Image fields
-- Portal select dropdown allows filtering
+- Define a CSS selector per variable to offer a "Show me" functionality, highlighting where in the preview that the styling will affect.
+- Reset a variable back to it's default state using the Reset button.
+- Upload new images and replace them.
+- Portal select dropdown allows filtering.
 
 Screenshots
 -------------------
