@@ -1,6 +1,6 @@
 Advanced Branding Editor
 ==================
-Advanced Branding Editor allows you to define branding options for custom portals, and configure them using a user friendly interface. The regular branding editor only allows configuration of the out-of-box Service Portal, and not custom ones or other product Service Portal's such as HR or CSM. This is due to the SASS variables you can configure being hard-coded to those that are offered in Bootstrap, which are not as flexible as needed in most situations.
+Advanced Branding Editor allows you to define branding options for custom portals, and configure them using a user friendly interface. The regular branding editor only allows configuration of the out-of-box Service Portal, and the hard-coded variables defined in there are not particularly relevant to custom portals, or other product Service Portal's such as HR or CSM.
 
 Screenshots
 -------------------
