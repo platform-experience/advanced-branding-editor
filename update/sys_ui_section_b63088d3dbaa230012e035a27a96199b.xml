@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Field configuration" section_id="b63088d3dbaa230012e035a27a96199b" sys_domain="global" table="x_si_abe_item_field" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>table</element>
+            <position>0</position>
+            <sys_created_by>dylan.lindgren</sys_created_by>
+            <sys_created_on>2019-01-03 01:03:26</sys_created_on>
+            <sys_id>0237da05dbfa270012e035a27a96191b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Field configuration" display_value="Field configuration" name="x_si_abe_item_field" sys_domain="global" view="Default view">b63088d3dbaa230012e035a27a96199b</sys_ui_section>
+            <sys_updated_by>dylan.lindgren</sys_updated_by>
+            <sys_updated_on>2019-01-03 01:03:26</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>document</element>
+            <position>1</position>
+            <sys_created_by>dylan.lindgren</sys_created_by>
+            <sys_created_on>2019-01-03 01:03:26</sys_created_on>
+            <sys_id>8237da05dbfa270012e035a27a96191b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Field configuration" display_value="Field configuration" name="x_si_abe_item_field" sys_domain="global" view="Default view">b63088d3dbaa230012e035a27a96199b</sys_ui_section>
+            <sys_updated_by>dylan.lindgren</sys_updated_by>
+            <sys_updated_on>2019-01-03 01:03:26</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>2</position>
+            <sys_created_by>dylan.lindgren</sys_created_by>
+            <sys_created_on>2019-01-03 01:03:26</sys_created_on>
+            <sys_id>0637da05dbfa270012e035a27a96191b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Field configuration" display_value="Field configuration" name="x_si_abe_item_field" sys_domain="global" view="Default view">b63088d3dbaa230012e035a27a96199b</sys_ui_section>
+            <sys_updated_by>dylan.lindgren</sys_updated_by>
+            <sys_updated_on>2019-01-03 01:03:26</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>field</element>
+            <position>3</position>
+            <sys_created_by>dylan.lindgren</sys_created_by>
+            <sys_created_on>2019-01-03 01:03:26</sys_created_on>
+            <sys_id>8637da05dbfa270012e035a27a96191b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Field configuration" display_value="Field configuration" name="x_si_abe_item_field" sys_domain="global" view="Default view">b63088d3dbaa230012e035a27a96199b</sys_ui_section>
+            <sys_updated_by>dylan.lindgren</sys_updated_by>
+            <sys_updated_on>2019-01-03 01:03:26</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>type</element>
+            <position>4</position>
+            <sys_created_by>dylan.lindgren</sys_created_by>
+            <sys_created_on>2019-01-03 01:03:26</sys_created_on>
+            <sys_id>0a37da05dbfa270012e035a27a96191b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Field configuration" display_value="Field configuration" name="x_si_abe_item_field" sys_domain="global" view="Default view">b63088d3dbaa230012e035a27a96199b</sys_ui_section>
+            <sys_updated_by>dylan.lindgren</sys_updated_by>
+            <sys_updated_on>2019-01-03 01:03:26</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Field configuration</caption>
+            <header>false</header>
+            <name>x_si_abe_item_field</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>dylan.lindgren</sys_created_by>
+            <sys_created_on>2018-12-28 03:34:24</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>b63088d3dbaa230012e035a27a96199b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Field configuration</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
+            <sys_update_name>sys_ui_section_b63088d3dbaa230012e035a27a96199b</sys_update_name>
+            <sys_updated_by>dylan.lindgren</sys_updated_by>
+            <sys_updated_on>2018-12-28 03:34:24</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

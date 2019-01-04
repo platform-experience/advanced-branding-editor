@@ -6,21 +6,21 @@
         <sys_created_by>dylan.lindgren</sys_created_by>
         <sys_created_on>2018-12-17 04:51:14</sys_created_on>
         <sys_id>1558afabdb526f003efe6f048a9619ae</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>ng-abe-unit</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>sp_ng_template_1558afabdb526f003efe6f048a9619ae</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2018-12-27 03:14:37</sys_updated_on>
+        <sys_updated_on>2019-01-03 03:37:49</sys_updated_on>
         <template><![CDATA[<div class="abe-unit">
     <input type="text"
-           ng-model="current.val"
-           ng-blur="change(current)"/>
-    <select ng-blur="change(current)"
+           ng-model="stageValue.value"
+           ng-blur="change()"/>
+    <select ng-blur="change()"
             ng-options="unit for unit in units"
-            ng-model="current.unit"></select>
+            ng-model="stageValue.unit"></select>
 </div>]]></template>
     </sp_ng_template>
 </record_update>

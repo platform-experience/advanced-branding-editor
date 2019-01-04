@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function AbeControlCtrl (ngAbeControl) {
-	
-  let c = this;
-	
-	c.changePortal = function (sysId) {
-		ngAbeControl.setPortal(c.data.portals[sysId]);
-	};
+        <client_script><![CDATA[function AbeControlCtrl($scope, ngAbeControl, spUtil) {
+
+    let c = this;
+
+    c.portal = ngAbeControl.getPortal;
+
+    c.changePortal = function (sysId) {
+
+        let portal = ngAbeControl.getPortals().find(function (cv) {
+            return cv.sysId === sysId;
+        });
+
+        ngAbeControl.setPortal(portal);
+    };
 }]]></client_script>
         <controller_as>c</controller_as>
         <css>#abe-control {
@@ -23,64 +30,32 @@
         <has_preview>false</has_preview>
         <id>abe-control</id>
         <internal>false</internal>
-        <link/>
+        <link><![CDATA[function AbeCtrlLink () {
+
+}]]></link>
         <name>ABE Control</name>
         <option_schema/>
         <public>false</public>
         <roles/>
         <script><![CDATA[(function() {
 
-	data.sysId = options.portal.sysId;
-	data.portalTable = 'sp_portal';
-
-	var gr = new GlideRecord(data.portalTable);
-	gr.query();
-
-	data.portals = {};
-
-	while (gr.next()) {
-		
-		var portal = {
-			theme: gr.getValue('theme'),
-			homepage: gr.getDisplayValue("homepage"),
-			url_suffix: gr.getValue("url_suffix"),
-			displayValue: gr.getDisplayValue(),
-			value: gr.getUniqueValue(),
-			sysId: gr.getUniqueValue()
-		};
-		
-		var groupGr = new GlideRecord('x_si_abe_variable_group');
-		groupGr.addQuery('portal', portal.sysId);
-		groupGr.setLimit(1);
-		groupGr.orderBy('order');
-		groupGr.query();
-		
-		if (groupGr.next()) {
-			portal.defaultGroup = {
-				sysId: groupGr.getUniqueValue(),
-				search: groupGr.getValue('search')
-			};
-		}
-
-		data.portals[gr.getUniqueValue()] = portal;
-	}
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-11-09 01:10:04</sys_created_on>
         <sys_id>43498393db61230022757d9ebf9619db</sys_id>
-        <sys_mod_count>109</sys_mod_count>
+        <sys_mod_count>160</sys_mod_count>
         <sys_name>ABE Control</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>sp_widget_43498393db61230022757d9ebf9619db</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2018-12-27 00:47:55</sys_updated_on>
+        <sys_updated_on>2019-01-04 01:54:19</sys_updated_on>
         <template><![CDATA[<div id="abe-control">
-  <sn-record-picker field="c.data.portals[c.data.sysId]" display-field="'title'"
-                    on-change="c.changePortal(val)" table="::c.data.portalTable"
+  <sn-record-picker field="c.portal()" display-field="'title'"
+                    on-change="c.changePortal(val)" table="::'sp_portal'"
                     search-fields="'title'" options="{allowClear: false}"></sn-record-picker>
 </div>]]></template>
     </sp_widget>

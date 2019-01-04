@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_si_abe.AbeHelper</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>AbeHelper</name>
+        <script><![CDATA[var AbeHelper = Class.create();
+
+AbeHelper.prototype = {
+    initialize: function () {
+    },
+
+    getGroups: function (portalId, groupId) {
+
+        var portalGr = new GlideRecord('sp_portal');
+        portalGr.get(portalId);
+
+        var sassString = portalGr.getValue('css_variables');
+
+        var sassVars = {};
+
+        if (sassString) {
+
+            var sassMatch = sassString.match(/(\$.+):\s?(.+);/gi);
+
+            sassMatch.forEach(function (cv) {
+                var name = cv.slice(0, cv.indexOf(':'));
+                sassVars[name] = cv.slice(cv.indexOf(':') + 1, cv.length).replace(';', '').trim();
+            });
+        }
+
+        var groupGr = new GlideRecord('x_si_abe_group');
+        groupGr.addQuery('portal', portalId);
+        groupGr.orderBy('order');
+        groupGr.query();
+
+        var groups = [];
+
+        var count = 0;
+
+        while (groupGr.next()) {
+
+            var group = this._buildGroup(groupGr);
+
+            group.selected = group.sysId === groupId || (groupId === null && count === 0);
+
+            var itemGr = new GlideRecord('x_si_abe_item');
+            itemGr.addQuery('group', group.sysId);
+            itemGr.orderBy('order');
+            itemGr.query();
+
+            var items = [];
+
+            while (itemGr.next()) {
+
+                var item = {
+                    name: itemGr.getDisplayValue(),
+                    sysId: itemGr.getUniqueValue(),
+                    description: itemGr.getValue('description'),
+                    order: parseInt(itemGr.getValue('order')),
+                    cssSelector: itemGr.getValue('css_selector'),
+                    type: itemGr.getValue('type')
+                };
+
+                if (itemGr.getRecordClassName() === 'x_si_abe_item_variable') {
+
+                    item.class = 'variable';
+                    item.sassVariable = itemGr.ref_x_si_abe_item_variable.sass_variable.toString();
+                    item.default = itemGr.ref_x_si_abe_item_variable.default.toString();
+                    item.sassValue = sassVars[item.sassVariable] ? sassVars[item.sassVariable] : false;
+
+                } else if (itemGr.getRecordClassName() === 'x_si_abe_item_field') {
+
+                    item.class = 'field';
+                    item.table = itemGr.ref_x_si_abe_item_field.table.toString();
+                    item.field = itemGr.ref_x_si_abe_item_field.field.toString();
+                    item.document = itemGr.ref_x_si_abe_item_field.document.toString();
+
+                    var fieldGr = new GlideRecord(item.table);
+                    fieldGr.get(item.document);
+
+                    if (item.type === 'image') {
+                        item.value = this._getImage(item.table, item.field, item.document);
+                    } else {
+                        item.value = fieldGr.getValue(item.field);
+                    }
+                }
+
+                items.push(item);
+            }
+
+            group.items = items;
+
+            if (group.items.length > 0) {
+                groups.push(group);
+            }
+
+            count++;
+        }
+
+        return groups;
+
+    },
+
+    getPortals: function (portalId) {
+
+        var portalGr = new GlideRecord('sp_portal');
+        portalGr.orderBy('default');
+        portalGr.query();
+
+        var portals = [];
+
+        while (portalGr.next()) {
+
+            var portal = {
+                name: portalGr.getDisplayValue(),
+                title: portalGr.getDisplayValue(),
+                value: portalGr.getUniqueValue(),
+                sysId: portalGr.getUniqueValue(),
+                displayValue: portalGr.getDisplayValue(),
+                urlSuffix: portalGr.getValue('url_suffix'),
+                theme: portalGr.getValue('theme'),
+                homepage: portalGr.getDisplayValue("homepage"),
+            };
+
+            portal.selected = portal.sysId === portalId || (!portalId && portalGr.getValue('default') === '1');
+
+            var groupGr = new GlideRecord('x_si_abe_group');
+            groupGr.addQuery('portal', portal.sysId);
+            groupGr.orderBy('order');
+            groupGr.setLimit(1);
+            groupGr.query();
+
+            if (groupGr.next()) {
+                portal.defaultGroup = this._buildGroup(groupGr)
+            }
+
+            portals.push(portal);
+        }
+
+        return portals;
+    },
+
+    saveSassValue: function saveSassValue(portalId, sassVar, sassVal) {
+
+        var portalGr = new GlideRecord('sp_portal');
+        portalGr.get(portalId);
+
+        var sassString = portalGr.getValue('css_variables');
+
+        var re = new RegExp('(\\' + sassVar + ':)(.*?)(;)');
+
+        if (sassString.indexOf(sassVar) !== -1) {
+            sassString = sassString.replace(re, '$1 ' + sassVal + '$3');
+        } else {
+            sassString = sassString + '\n' + sassVar + ': ' + sassVal + ';';
+        }
+
+        portalGr.setValue('css_variables', sassString);
+        return portalGr.update();
+
+    },
+
+    saveField: function saveField (table, document, field, value) {
+
+        var gr = new GlideRecord(table);
+        gr.get(document);
+        gr.setValue(field, value);
+        return gr.update();
+    },
+
+    _buildGroup: function (groupGr) {
+
+        return {
+            name: groupGr.getDisplayValue(),
+            sysId: groupGr.getUniqueValue(),
+            annotation: groupGr.getValue('annotation'),
+            order: parseInt(groupGr.getValue('order')),
+            search: groupGr.getValue('search')
+        };
+    },
+
+    _getImage: function (table, field, recordId) {
+
+        var gr = new GlideRecord('sys_attachment');
+        gr.addQuery('table_name', 'ZZ_YY' + table);
+        gr.addQuery('table_sys_id', recordId);
+        gr.addQuery('file_name', field);
+        gr.query();
+
+        if (gr.next()) {
+            return gr.getUniqueValue() + '.iix';
+        }
+
+        return false;
+    },
+
+    type: 'AbeHelper'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>dylan.lindgren</sys_created_by>
+        <sys_created_on>2018-12-28 04:27:47</sys_created_on>
+        <sys_id>131c80dbdbaa230012e035a27a961978</sys_id>
+        <sys_mod_count>84</sys_mod_count>
+        <sys_name>AbeHelper</sys_name>
+        <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
+        <sys_update_name>sys_script_include_131c80dbdbaa230012e035a27a961978</sys_update_name>
+        <sys_updated_by>dylan.lindgren</sys_updated_by>
+        <sys_updated_on>2019-01-04 00:52:47</sys_updated_on>
+    </sys_script_include>
+</record_update>

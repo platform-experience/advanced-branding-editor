@@ -1,52 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function AbeEditorCtrl ($scope, $rootScope, ngAbeControl) {
+        <client_script><![CDATA[function AbeEditorCtrl ($scope, ngAbeControl) {
 
 	let c = this;
 
 	c.changeGroup = changeGroup;
-
-	c.$onInit = function () {
-
-		let properties = c.data.varString.match(/\$(.*?):(.*?);/g);
-
-		c.vars = {};
-
-		properties.forEach(function (cv) {
-			let name = cv.slice(0, cv.indexOf(':'));
-			c.vars[name] = cv.slice(cv.indexOf(':') + 1, cv.length).replace(';', '').trim();
-		});
-	};
-
-	ngAbeControl.setPortalWatcher(function (portal) {
-		c.server.get({
-			sysId: portal.sysId
-		}).then(function (r) {
-			c.data = r.data;
-			c.$onInit();
-		});
-	});
+	c.getGroups = ngAbeControl.getGroups;
 
 	function changeGroup (group) {
-		c.data.groupId = group.sysId;
 		ngAbeControl.setGroup(group);
 	}
 
-	$scope.$on('abe.variable.save', function (e, d) {
-		c.server.get({
-			action: 'saveSassVar',
-			sassVar: d.vbl,
-			value: d.val,
-			sysId: c.data.sysId
-		}).then(function (r) {
-			c.data.variables = r.data.variables;
-			c.data.groups = r.data.groups;
-			c.data.varString = r.data.varString;
-			c.$onInit();
-			$rootScope.$broadcast('abe.preview.reload');
-		});
-	});
 }]]></client_script>
         <controller_as>c</controller_as>
         <css>#abe-editor {
@@ -54,12 +19,35 @@
   height: 100%;
   width: 100%;
 
-  .abe-var-head {
+  .abe-field-string {
+    input {
+      box-shadow: 1px 1px 1px #ccc;
+      border-left: 1px solid #eee;
+      border-top: 1px solid #eee;
+      border-radius: 4px;
+      background: white;
+      width: 100%;
+    }
+  }
+
+  .abe-g-annotation {
+    background-color: #f9f9f9;
+    padding: 10px;
+    font-size: 13px;
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  .abe-g-closed .panel-heading {
+    border-bottom: 0;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .ai-head {
     display: flex;
     justify-content: space-between;
   }
 
-  .abe-vh-show {
+  .ai-h-show {
     a {
       cursor: pointer;
       font-size: 10px;
@@ -72,7 +60,7 @@
     }
   }
 
-  .abe-vh-reset {
+  .av-reset {
     text-align: right;
     button {
       font-size: 10px;
@@ -99,6 +87,8 @@
       border-radius: 4px;
       background-color: white;
       border: 1px solid #ddd;
+      cursor: pointer;
+      z-index: 100;
     }
   }
 
@@ -185,11 +175,11 @@ input {
   border-left: 1px solid #eee;
 }
 
-.abe-image {
+.abe-image, .abe-field-image {
   padding: 5px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  background-color: #f4f4f4;
+  background-image: url("/si-abe-image-bg.png");
   position: relative;
   text-align: center;
   cursor: pointer;
@@ -276,125 +266,54 @@ input {
         <roles/>
         <script><![CDATA[(function () {
 
-    data.sysId = input ? input.sysId : options.portal.sysId;
-    data.groupId = $sp.getParameter('group_id') ? $sp.getParameter('group_id') : false;
-
-    var portalGr = new GlideRecord('sp_portal');
-    portalGr.get(data.sysId);
-
-    data.varString = portalGr.getValue('css_variables') || ' ';
-
-    if (input && input.action === 'saveSassVar') {
-
-        var rgx = new RegExp('(\\' + input.sassVar + ':)(.*?)(;)');
-
-        if (data.varString.indexOf(input.sassVar) !== -1) {
-            data.varString = data.varString.replace(rgx, '$1 ' + input.value + '$3');
-        } else {
-            data.varString = data.varString + '\n' + input.sassVar + ': ' + input.value + ';';
-        }
-
-        portalGr.setValue('css_variables', data.varString);
-        portalGr.update();
-
-    }
-
-    var gr = new GlideRecord('x_si_abe_variable');
-    gr.addQuery('variable_group.portal', portalGr.getUniqueValue());
-    gr.orderBy('variable_group.order');
-    gr.orderBy('variable_group');
-    gr.query();
-
-    data.variables = {};
-    data.groups = [];
-
-    while (gr.next()) {
-
-        if (!data.variables[gr.getValue('variable_group')]) {
-
-            var varGrp = gr.variable_group.getRefRecord();
-
-            data.variables[gr.getValue('variable_group')] = {};
-
-            data.groups.push({
-                sysId: varGrp.getUniqueValue(),
-                name: varGrp.getDisplayValue(),
-                order: parseInt(varGrp.getValue('order')),
-                search: varGrp.getValue('search')
-            });
-
-        }
-
-        if (!data.variables[gr.getValue('variable_group')][gr.getValue('type')]) {
-            data.variables[gr.getValue('variable_group')][gr.getValue('type')] = {
-                label: gr.getDisplayValue('type'),
-                vars: []
-            };
-        }
-
-        data.variables[gr.getValue('variable_group')][gr.getValue('type')].vars.push({
-            name: gr.getValue('name'),
-            type: gr.getValue('type'),
-            sassVar: gr.getValue('sass_variable'),
-            description: gr.getValue('description'),
-            defaultVal: gr.getValue('default'),
-            cssSelector: gr.getValue('css_selector'),
-            order: parseInt(gr.getValue('order'))
-        });
-    }
-
-    if (!data.groupId && data.groups.length > 0) {
-        data.groupId = data.groups[0].sysId;
-    }
-
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-11-09 01:12:07</sys_created_on>
         <sys_id>85c90793db61230022757d9ebf961941</sys_id>
-        <sys_mod_count>619</sys_mod_count>
+        <sys_mod_count>711</sys_mod_count>
         <sys_name>ABE Editor</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>sp_widget_85c90793db61230022757d9ebf961941</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2018-12-27 02:17:55</sys_updated_on>
+        <sys_updated_on>2019-01-04 01:43:44</sys_updated_on>
         <template><![CDATA[<div id="abe-editor">
     <div class="abe-e-container">
         <div class="panel panel-default"
-             ng-repeat="group in c.data.groups">
+             ng-repeat="group in c.getGroups()" ng-class="{'abe-g-opened': group.selected, 'abe-g-closed': !group.selected}">
             <div class="panel-heading">
                 <h2 class="panel-title">
                     <div>{{::group.name}}</div>
                     <div>
-                        <button ng-if="group.sysId !== c.data.groupId"
-                                ng-click="c.changeGroup(group)">${Edit}
+                        <button ng-if="!group.selected"
+                                ng-click="c.changeGroup(group)"
+                                title="Expand this group">
+                            ${Edit}
                         </button>
                     </div>
-
                 </h2>
             </div>
-            <div>
-                <div ng-repeat="val in c.data.variables[c.data.groupId]"
-                     ng-if="group.sysId === c.data.groupId"
-                     class="panel-body">
+            <div ng-if="group.selected">
+                <div class="abe-g-annotation" ng-if="::group.annotation">{{::group.annotation}}</div>
+                <div class="panel-body">
                     <ul>
-                        <li ng-repeat="var in ::val.vars | orderBy:'order'">
-                            <ng-abe-variable av-var="::var"
-                                             av-val="c.vars[var.sassVar]"></ng-abe-variable>
+                        <li ng-repeat="item in ::group.items">
+                            <ng-abe-item ai-item="::item"></ng-abe-item>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div ng-if="c.data.groups.length === 0" class="alert alert-info">
+    <div ng-if="c.options.groups.length === 0" class="alert alert-info">
         <p><strong>${Nothing to configure!} =(</strong></p>
         <p>${It looks like this portal hasn't been configured for use with the Advanced Branding Editor yet}</p>
         <p>You might want to try configuring this portal with the regular branding editor.</p>
     </div>
-</div>]]></template>
+</div>
+]]></template>
     </sp_widget>
 </record_update>

@@ -3,15 +3,24 @@
         <name>ngAbeColorVar</name>
         <script><![CDATA[function ngAbeColorVar($rootScope) {
 
-    function ngAbeColorVarLink(scope, elem) {
+    function ngAbeColorVarCtrl ($scope) {
+        $scope.stageValue = $scope.value;
+    }
+
+    function ngAbeColorVarLink(scope, elem, attr, ctrl) {
+
+        ctrl[0].resetProcessor = function resetProcessor (val) {
+            scope.stageValue = val;
+            return val;
+        };
 
         let input = elem.find('.abe-cp input');
         let popup = elem.find('.abe-cp-popup');
         let field = elem[0];
 
-        input.colorpicker({
+        let options = {
             customClass: 'colorpicker-2x',
-            color: scope.value,
+            color: scope.stageValue,
             container: popup,
             sliders: {
                 saturation: {
@@ -25,10 +34,12 @@
                     maxTop: 200
                 }
             }
-        }).on('hidePicker', function (e) {
+        };
+
+        input.colorpicker(options).on('hidePicker', function (e) {
             scope.$apply(function () {
                 document.removeEventListener('click', blurIfOutsideField);
-                scope.save(scope.vbl.sassVar, scope.value);
+                scope.save(scope.stageValue);
             });
         }).on('showPicker', function (e) {
             document.addEventListener('click', blurIfOutsideField);
@@ -44,8 +55,6 @@
             }
         }
 
-        scope.init();
-
         scope.open = function () {
             input.colorpicker('show');
         };
@@ -53,22 +62,23 @@
 
     return {
         templateUrl: 'ng-abe-color',
-        require: '^^ngAbeVariable',
-        link: ngAbeColorVarLink
+        require: ['^^ngAbeItem', '^^ngAbeVariable'],
+        link: ngAbeColorVarLink,
+        controller: ngAbeColorVarCtrl
     };
 }]]></script>
         <sys_class_name>sp_angular_provider</sys_class_name>
         <sys_created_by>dylan.lindgren</sys_created_by>
         <sys_created_on>2018-12-21 00:22:52</sys_created_on>
         <sys_id>a2215ff8db2e23403efe6f048a961947</sys_id>
-        <sys_mod_count>47</sys_mod_count>
+        <sys_mod_count>54</sys_mod_count>
         <sys_name>ngAbeColorVar</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>sp_angular_provider_a2215ff8db2e23403efe6f048a961947</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2018-12-27 00:26:55</sys_updated_on>
+        <sys_updated_on>2019-01-03 04:44:27</sys_updated_on>
         <type>directive</type>
     </sp_angular_provider>
 </record_update>

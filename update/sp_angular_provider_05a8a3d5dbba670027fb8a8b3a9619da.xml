@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_angular_provider">
+    <sp_angular_provider action="INSERT_OR_UPDATE">
+        <name>ngAbeFieldImage</name>
+        <script><![CDATA[function ngAbeFieldImage () {
+
+	function ngAbeFieldImageLink (scope, elem, attr, ctrl) {
+
+	}
+
+	function ngAbeFieldImageCtrl ($scope) {
+		$scope.stageValue = $scope.value;
+
+		$scope.change = function () {
+			$scope.save($scope.stageValue);
+		};
+	}
+
+
+	return {
+		templateUrl: 'ng-abe-field-image',
+		require: ['^^ngAbeItem', '^^ngAbeField'],
+		controller: ngAbeFieldImageCtrl,
+		link: ngAbeFieldImageLink
+	};
+}]]></script>
+        <sys_class_name>sp_angular_provider</sys_class_name>
+        <sys_created_by>dylan.lindgren</sys_created_by>
+        <sys_created_on>2019-01-04 01:38:05</sys_created_on>
+        <sys_id>05a8a3d5dbba670027fb8a8b3a9619da</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>ngAbeFieldImage</sys_name>
+        <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
+        <sys_update_name>sp_angular_provider_05a8a3d5dbba670027fb8a8b3a9619da</sys_update_name>
+        <sys_updated_by>dylan.lindgren</sys_updated_by>
+        <sys_updated_on>2019-01-04 01:40:58</sys_updated_on>
+        <type>directive</type>
+    </sp_angular_provider>
+</record_update>

@@ -14,7 +14,7 @@
         <mobile_title>Branding Groups</mobile_title>
         <mobile_view_name>Mobile</mobile_view_name>
         <name>x_si_abe_group</name>
-        <order/>
+        <order>2700</order>
         <override_menu_roles>false</override_menu_roles>
         <query/>
         <report/>
@@ -25,7 +25,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>6d4b2efadb22a30027fb8a8b3a96190e</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Branding Groups</sys_name>
         <sys_overrides/>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
@@ -33,7 +33,7 @@
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>sys_app_module_6d4b2efadb22a30027fb8a8b3a96190e</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2018-12-27 02:44:42</sys_updated_on>
+        <sys_updated_on>2018-12-28 03:17:00</sys_updated_on>
         <timeline_page/>
         <title>Branding Groups</title>
         <uncancelable>false</uncancelable>

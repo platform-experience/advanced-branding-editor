@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function AdvancedBrandingEditorCtrl () {
+        <client_script><![CDATA[function AdvancedBrandingEditorCtrl (ngAbeControl, spUtil, $scope) {
+
 	let c = this;
+
+
+	function refreshData() {
+
+	}
+
+	function loadData() {
+
+	}
+
+	spUtil.recordWatch($scope, 'sp_portal', '', function (name, data) {
+		c.server.refresh().then(function () {
+			ngAbeControl.initPortals(c.data.portals);
+			ngAbeControl.initGroups(c.data.groups);
+		});
+	});
+
+	ngAbeControl.initPortals(c.data.portals);
+	ngAbeControl.initGroups(c.data.groups);
+
+	c.isInit = ngAbeControl.isInit;
 }]]></client_script>
         <controller_as>c</controller_as>
         <css>#abe {
@@ -58,7 +80,7 @@ div[widget] {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  border-radius: 3px;
   
   div {
   	display: contents;
@@ -81,25 +103,23 @@ div[widget] {
         <has_preview>false</has_preview>
         <id>abe-main</id>
         <internal>false</internal>
-        <link><![CDATA[function (scope) {
+        <link><![CDATA[function AdvancedBrandingEditorLink (scope) {
 
 	var $rootScope = $injector.get('$rootScope');
-	var $timeout = $injector.get('$timeout');
 
 	scope.loading = true;
 
-	$rootScope.$on('abe.preview.loading',function () {
+	function showOverlay () {
 		scope.loading = true;
+	}
 
-		$timeout(function () {
-			scope.loading = false;
-		}, 2000);
-	});
-
-	$rootScope.$on('abe.preview.loaded', function () {
+	function hideOverlay () {
 		scope.loading = false;
-	});
+	}
 
+	$rootScope.$on('abe.save.start', showOverlay);
+	$rootScope.$on('abe.preview.loading', showOverlay);
+	$rootScope.$on('abe.preview.loaded', hideOverlay);
 }]]></link>
         <name>Advanced Branding Editor</name>
         <option_schema/>
@@ -107,54 +127,13 @@ div[widget] {
         <roles/>
         <script><![CDATA[(function() {
 
-	data.sysId = $sp.getParameter('sys_id');
-	data.groupId = $sp.getParameter('group_id');
+	var sysId = $sp.getParameter('sys_id');
+	var groupId = $sp.getParameter('group_id');
 
-	if (!data.sysId) {
-		var portalGr = new GlideRecord('sp_portal');
-		portalGr.addQuery('default', '1');
-		portalGr.query();
+	var ah = new AbeHelper();
 
-		if (portalGr.next()) {
-			data.sysId = portalGr.getUniqueValue();
-		}
-	}
-
-	var gr = new GlideRecord('sp_portal');
-
-	if (gr.get(data.sysId)) {
-
-		data.portal = {
-			title: gr.getDisplayValue('title'),
-			urlSuffix: gr.getValue('url_suffix'),
-			theme: gr.getValue('theme'),
-			sysId: gr.getUniqueValue()
-		};
-	}
-
-	var grpGr = new GlideRecord('x_si_abe_variable_group');
-
-	if (data.groupId) {
-		grpGr.get(data.groupId);
-	} else {
-		grpGr.addQuery('portal', data.portal.sysId);
-		grpGr.setLimit(1);
-		grpGr.orderBy('order');
-		grpGr.query();
-		grpGr.next();
-	}
-
-	data.group = {
-		sysId: grpGr.getUniqueValue(),
-		name: grpGr.getDisplayValue(),
-		order: parseInt(grpGr.getValue('order')),
-		search: grpGr.getValue('search')
-	}
-
-	data.opts = {
-		portal: data.portal,
-		group: data.group
-	}
+	data.portals = ah.getPortals(sysId);
+	data.groups = ah.getGroups(sysId, groupId);
 
 })();]]></script>
         <servicenow>false</servicenow>
@@ -162,23 +141,23 @@ div[widget] {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-11-09 01:13:11</sys_created_on>
         <sys_id>680acb17db61230022757d9ebf9619e9</sys_id>
-        <sys_mod_count>106</sys_mod_count>
+        <sys_mod_count>174</sys_mod_count>
         <sys_name>Advanced Branding Editor</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>sp_widget_680acb17db61230022757d9ebf9619e9</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2018-12-27 00:43:06</sys_updated_on>
+        <sys_updated_on>2019-01-04 01:59:16</sys_updated_on>
         <template><![CDATA[<div id="abe">
   <div class="abe-control">
-    <widget id="abe-control" options="data.opts"></widget>
+    <widget id="abe-control"></widget>
   </div>
-  <div class="abe-editor">
-    <widget id="abe-editor" options="data.opts"></widget>
+  <div class="abe-editor" ng-if="c.isInit()">
+    <widget id="abe-editor"></widget>
   </div>
   <div class="abe-preview">
-    <widget id="abe-preview" options="data.opts"></widget>
+    <widget id="abe-preview"></widget>
     <div id="abe-loading" ng-if="loading">
       <div ng-include="'/si-abe-loading.svg'"></div>
     </div>

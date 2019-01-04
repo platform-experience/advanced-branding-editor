@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Variable configuration" section_id="4350985fdbaa230012e035a27a961983" sys_domain="global" table="x_si_abe_item_variable" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>type</element>
+            <position>0</position>
+            <sys_created_by>dylan.lindgren</sys_created_by>
+            <sys_created_on>2018-12-28 04:47:50</sys_created_on>
+            <sys_id>7201949fdbaa230012e035a27a9619a1</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Variable configuration" display_value="Variable configuration" name="x_si_abe_item_variable" sys_domain="global" view="Default view">4350985fdbaa230012e035a27a961983</sys_ui_section>
+            <sys_updated_by>dylan.lindgren</sys_updated_by>
+            <sys_updated_on>2018-12-28 04:47:50</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>1</position>
+            <sys_created_by>dylan.lindgren</sys_created_by>
+            <sys_created_on>2018-12-28 04:47:50</sys_created_on>
+            <sys_id>f201949fdbaa230012e035a27a9619a1</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Variable configuration" display_value="Variable configuration" name="x_si_abe_item_variable" sys_domain="global" view="Default view">4350985fdbaa230012e035a27a961983</sys_ui_section>
+            <sys_updated_by>dylan.lindgren</sys_updated_by>
+            <sys_updated_on>2018-12-28 04:47:50</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>sass_variable</element>
+            <position>2</position>
+            <sys_created_by>dylan.lindgren</sys_created_by>
+            <sys_created_on>2018-12-28 04:47:50</sys_created_on>
+            <sys_id>7601949fdbaa230012e035a27a9619a1</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Variable configuration" display_value="Variable configuration" name="x_si_abe_item_variable" sys_domain="global" view="Default view">4350985fdbaa230012e035a27a961983</sys_ui_section>
+            <sys_updated_by>dylan.lindgren</sys_updated_by>
+            <sys_updated_on>2018-12-28 04:47:50</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>default</element>
+            <position>3</position>
+            <sys_created_by>dylan.lindgren</sys_created_by>
+            <sys_created_on>2018-12-28 04:47:50</sys_created_on>
+            <sys_id>f601949fdbaa230012e035a27a9619a1</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Variable configuration" display_value="Variable configuration" name="x_si_abe_item_variable" sys_domain="global" view="Default view">4350985fdbaa230012e035a27a961983</sys_ui_section>
+            <sys_updated_by>dylan.lindgren</sys_updated_by>
+            <sys_updated_on>2018-12-28 04:47:50</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Variable configuration</caption>
+            <header>false</header>
+            <name>x_si_abe_item_variable</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>dylan.lindgren</sys_created_by>
+            <sys_created_on>2018-12-28 04:44:51</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>4350985fdbaa230012e035a27a961983</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Variable configuration</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
+            <sys_update_name>sys_ui_section_4350985fdbaa230012e035a27a961983</sys_update_name>
+            <sys_updated_by>dylan.lindgren</sys_updated_by>
+            <sys_updated_on>2018-12-28 04:44:51</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

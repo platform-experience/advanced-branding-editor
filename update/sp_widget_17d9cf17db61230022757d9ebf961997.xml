@@ -1,36 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function abePreviewCtrl ($scope, ngAbeControl, $rootScope) {
+        <client_script><![CDATA[function AbePreviewCtrl ($scope, ngAbeControl, $rootScope) {
 
 	let c = this;
-
-	$scope.setUrl = setUrl;
 
 	$scope.suffix = '';
 	$scope.search = '';
 
-	setUrl(c.options.portal.urlSuffix, c.options.group.search);
+	c.portalId = false;
+
+	c.$onInit = function () {
+
+		let p = ngAbeControl.getPortal();
+		let g = ngAbeControl.getGroup();
+
+		setUrl(p.urlSuffix, g.search);
+	};
 
 	ngAbeControl.setPortalWatcher(function (portal) {
-
-		let search = portal.defaultGroup ? portal.defaultGroup.search : '';
-
-		setUrl(portal.url_suffix, search);
+		setUrl(portal.urlSuffix, portal.defaultGroup ? portal.defaultGroup.search : '');
 	});
 
 	ngAbeControl.setGroupWatcher(function (group) {
 		setSearch(group.search);
 	});
-
-	function setPortal (suffix) {
-		if ($scope.suffix !== suffix) {
-			$rootScope.$broadcast('abe.preview.loading');
-			$scope.search = '';
-			$scope.suffix = suffix;
-			$scope.url = $scope.suffix + $scope.search;
-		}
-	}
 
 	function setSearch (search) {
 		if ($scope.search !== search) {
@@ -41,9 +35,6 @@
 	}
 
 	function setUrl (suffix, search) {
-
-		console.log(suffix, search);
-
 		if ($scope.suffix !== suffix || $scope.search !== search) {
 			$rootScope.$broadcast('abe.preview.loading');
 			$scope.suffix = suffix;
@@ -72,84 +63,79 @@ iframe {
         <has_preview>false</has_preview>
         <id>abe-preview</id>
         <internal>false</internal>
-        <link><![CDATA[function abePreviewLink (scope, elem) {
+        <link><![CDATA[function abePreviewLink(scope, elem) {
 
-	let $rootScope = $injector.get('$rootScope');
-	let $timeout = $injector.get('$timeout');
-	let ngAbeHighlighter = $injector.get('ngAbeHighlighter');
+    let $rootScope = $injector.get('$rootScope');
+    let ngAbeHighlighter = $injector.get('ngAbeHighlighter');
 
-	let iframe;
-	let iframeElem;
+    let iframe;
+    let iframeElem;
 
-	$timeout(function () {
+    iframe = elem.find('iframe');
+    iframeElem = elem.find('iframe')[0];
 
-		iframe = elem.find('iframe');
+    iframeElem.onload = function () {
+        scope.$apply(function () {
+            $rootScope.$broadcast('abe.preview.loaded');
+        });
+    };
 
-		iframeElem = elem.find('iframe')[0];
+    scope.$on('abe.save.complete', function reloadPreview() {
+        $rootScope.$broadcast('abe.preview.loading');
+        iframeElem.contentWindow.location.reload(true);
+        iframeElem.onload = function () {
+            scope.$apply(function () {
+                $rootScope.$broadcast('abe.preview.loaded');
+            });
+        };
+    });
 
-		iframeElem.onload = function () {
-			scope.$apply(function () {
-				$rootScope.$broadcast('abe.preview.loaded');
-			});
-		};
-	}, 0);
+    ngAbeHighlighter.init(function (selector) {
+        let item = iframe.contents().find(selector)[0];
 
-	ngAbeHighlighter.init(function (selector) {
-		let item = iframe.contents().find(selector)[0];
+        let old = {
+            border: item.style.border,
+            borderRadius: item.style.borderRadius,
+            boxShadow: item.style.boxShadow,
+            padding: item.style.padding
+        };
 
-		let old = {
-			border: item.style.border,
-			borderRadius: item.style.borderRadius,
-			boxShadow: item.style.boxShadow,
-			padding: item.style.padding
-		};
+        item.style.border = "5px solid red";
+        item.style.borderRadius = "10px";
+        item.style.boxShadow = "0 0 10px red";
+        item.style.padding = "2px";
 
-		item.style.border = "5px solid red";
-		item.style.borderRadius = "10px";
-		item.style.boxShadow = "0 0 10px red";
-		item.style.padding = "2px";
-
-		return function () {
-			item.style.border = old.border;
-			item.style.borderRadius = old.borderRadius;
-			item.style.boxShadow = old.boxShadow;
-			item.style.padding = old.padding;
-		}
-	});
-
-	scope.$on('abe.preview.reload',function reloadPreview () {
-		$rootScope.$broadcast('abe.preview.loading');
-		iframeElem.contentWindow.location.reload(true);
-		iframeElem.onload = function () {
-			scope.$apply(function () {
-				$rootScope.$broadcast('abe.preview.loaded');
-			});
-		};
-	});
+        return function () {
+            item.style.border = old.border;
+            item.style.borderRadius = old.borderRadius;
+            item.style.boxShadow = old.boxShadow;
+            item.style.padding = old.padding;
+        }
+    });
 
 }]]></link>
         <name>ABE Preview</name>
         <option_schema/>
         <public>false</public>
         <roles/>
-        <script><![CDATA[(function() {})();]]></script>
+        <script><![CDATA[(function() {
+
+})();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-11-09 01:12:33</sys_created_on>
         <sys_id>17d9cf17db61230022757d9ebf961997</sys_id>
-        <sys_mod_count>138</sys_mod_count>
+        <sys_mod_count>179</sys_mod_count>
         <sys_name>ABE Preview</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>sp_widget_17d9cf17db61230022757d9ebf961997</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2018-12-27 00:55:26</sys_updated_on>
+        <sys_updated_on>2019-01-04 00:15:43</sys_updated_on>
         <template><![CDATA[<div id="abe-preview">
-  <div ng-if="::c.options.portal">
     <iframe ng-src="{{url}}"></iframe>
-  </div>
 </div>]]></template>
     </sp_widget>
 </record_update>

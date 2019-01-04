@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_si_abe_item_variable">
+    <x_si_abe_item_variable action="INSERT_OR_UPDATE">
+        <css_selector/>
+        <default>#428bca</default>
+        <description/>
+        <group display_value="Brand">62dd3383dbaa230012e035a27a961961</group>
+        <name>Primary</name>
+        <order>150</order>
+        <sass_variable>$brand-primary</sass_variable>
+        <sys_class_name>x_si_abe_item_variable</sys_class_name>
+        <sys_created_by>dylan.lindgren</sys_created_by>
+        <sys_created_on>2019-01-03 00:00:08</sys_created_on>
+        <sys_id>b2b8ca41dbba270012e035a27a9619e9</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Primary</sys_name>
+        <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
+        <sys_update_name>x_si_abe_item_variable_b2b8ca41dbba270012e035a27a9619e9</sys_update_name>
+        <sys_updated_by>dylan.lindgren</sys_updated_by>
+        <sys_updated_on>2019-01-03 00:55:39</sys_updated_on>
+        <type>color</type>
+    </x_si_abe_item_variable>
+</record_update>
