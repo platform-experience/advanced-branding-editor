@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_si_abe_item_variable">
+    <x_si_abe_item_variable action="INSERT_OR_UPDATE">
+        <css_selector/>
+        <default>rgb(33, 110, 145)</default>
+        <description/>
+        <group display_value="Type">86e1ff95dbfa670027fb8a8b3a96194d</group>
+        <name>Button 1 background color</name>
+        <order>100</order>
+        <sass_variable>$pi-detailbtn1-background-color</sass_variable>
+        <sys_class_name>x_si_abe_item_variable</sys_class_name>
+        <sys_created_by>dylan.lindgren</sys_created_by>
+        <sys_created_on>2019-01-04 02:18:47</sys_created_on>
+        <sys_id>72f1ff95dbfa670027fb8a8b3a961953</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Button 1 background color</sys_name>
+        <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
+        <sys_update_name>x_si_abe_item_variable_72f1ff95dbfa670027fb8a8b3a961953</sys_update_name>
+        <sys_updated_by>dylan.lindgren</sys_updated_by>
+        <sys_updated_on>2019-01-04 02:18:47</sys_updated_on>
+        <type>color</type>
+    </x_si_abe_item_variable>
+</record_update>

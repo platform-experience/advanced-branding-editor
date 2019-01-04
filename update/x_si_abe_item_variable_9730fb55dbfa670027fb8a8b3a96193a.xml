@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="x_si_abe_item_variable">
+    <x_si_abe_item_variable action="INSERT_OR_UPDATE">
+        <css_selector/>
+        <default>rgba(255,255,255,0.1)</default>
+        <description/>
+        <group display_value="Primary colors">a93feb15dbfa670027fb8a8b3a961971</group>
+        <name>Header item background color</name>
+        <order>65</order>
+        <sass_variable>$pi-header-menu-item-background-color</sass_variable>
+        <sys_class_name>x_si_abe_item_variable</sys_class_name>
+        <sys_created_by>dylan.lindgren</sys_created_by>
+        <sys_created_on>2019-01-04 02:10:51</sys_created_on>
+        <sys_id>9730fb55dbfa670027fb8a8b3a96193a</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Header item background color</sys_name>
+        <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
+        <sys_update_name>x_si_abe_item_variable_9730fb55dbfa670027fb8a8b3a96193a</sys_update_name>
+        <sys_updated_by>dylan.lindgren</sys_updated_by>
+        <sys_updated_on>2019-01-04 02:24:17</sys_updated_on>
+        <type>color</type>
+    </x_si_abe_item_variable>
+</record_update>
