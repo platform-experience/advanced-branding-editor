@@ -4,10 +4,14 @@
         <script><![CDATA[function ngAbeImageVar($http) {
 
     function ngAbeImageVarCtrl ($scope) {
-        $scope.stageValue = $scope.value.substring(1, $scope.value.length - 1);
+        $scope.stageValue = $scope.value.replace(/['"]+/g, '');
     }
 
     function ngAbeImageVarLink(scope, elem, attr, ctrl) {
+
+        ctrl[0].saveProcessor = function (val) {
+            ctrl[1].saveProcessor("'" + val + "'");
+        };
 
         scope.trigger = trigger;
         scope.change = change;
@@ -15,7 +19,7 @@
         function change(files) {
 
             let ext = '.' + files[0].name.split('.').pop();
-            let name = scope.item.sassVar + '-' + Date.now() + ext;
+            let name = scope.item.sassVariable + '-' + Date.now() + ext;
 
             $http({
                 method: 'POST',
@@ -40,8 +44,8 @@
                     },
                     data: files[0]
                 }).then(function () {
-                    let val = "'" + name + "'";
-                    ctrl.save(val);
+                    scope.save(name);
+                    scope.stageValue = name;
                 });
 
             });
@@ -64,14 +68,14 @@
         <sys_created_by>dylan.lindgren</sys_created_by>
         <sys_created_on>2018-12-21 00:23:40</sys_created_on>
         <sys_id>f4719ff8db2e23403efe6f048a961994</sys_id>
-        <sys_mod_count>51</sys_mod_count>
+        <sys_mod_count>72</sys_mod_count>
         <sys_name>ngAbeImageVar</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>sp_angular_provider_f4719ff8db2e23403efe6f048a961994</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2019-01-03 04:29:37</sys_updated_on>
+        <sys_updated_on>2019-01-07 01:33:05</sys_updated_on>
         <type>directive</type>
     </sp_angular_provider>
 </record_update>

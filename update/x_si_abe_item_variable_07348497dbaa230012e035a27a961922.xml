@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="x_si_abe_item_variable">
     <x_si_abe_item_variable action="INSERT_OR_UPDATE">
-        <css_selector>.navbar-brand img</css_selector>
+        <css_selector>.navbar-brand-logo</css_selector>
         <default>0.5rem</default>
         <description>The unit distance that the logo is positioned from the top of the page.</description>
         <group display_value="Title and Logo">ee9d7f43dbaa230012e035a27a9619e7</group>
@@ -11,14 +11,14 @@
         <sys_created_by>dylan.lindgren</sys_created_by>
         <sys_created_on>2018-12-28 03:51:53</sys_created_on>
         <sys_id>07348497dbaa230012e035a27a961922</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>Logo padding (top)</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>x_si_abe_item_variable_07348497dbaa230012e035a27a961922</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2019-01-03 00:56:07</sys_updated_on>
+        <sys_updated_on>2019-01-07 03:42:09</sys_updated_on>
         <type>unit</type>
     </x_si_abe_item_variable>
 </record_update>

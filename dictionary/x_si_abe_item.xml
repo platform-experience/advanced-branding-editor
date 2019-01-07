@@ -5,7 +5,7 @@
         <element label="Group" mandatory="true" max_length="32" name="group" reference="x_si_abe_group" type="reference"/>
         <element label="Name" mandatory="true" max_length="64" name="name" type="string"/>
         <element default="100" label="Order" mandatory="true" max_length="40" name="order" type="integer"/>
-        <element choice="1" label="Type" mandatory="true" max_length="40" name="type" type="choice">
+        <element choice="3" label="Type" mandatory="true" max_length="40" name="type" type="choice">
             <choice/>
         </element>
         <index name="index">

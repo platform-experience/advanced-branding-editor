@@ -75,9 +75,33 @@ iframe {
     iframeElem = elem.find('iframe')[0];
 
     iframeElem.onload = function () {
-        scope.$apply(function () {
-            $rootScope.$broadcast('abe.preview.loaded');
-        });
+
+        let css = `
+            .abe-highlighted {
+                position: relative !important;
+                display: block !important;
+            }
+            .abe-highlighted:after {
+                content: ' ';
+                min-height: 100%;
+                height: 100%;
+                min-width: 100%;
+                width: 100%;
+                border: 3px solid red;
+                background-color: rgba(255,0,0,0.3);
+                position: absolute;
+                top: 0;
+                left: 0;
+                box-shadow: 0px 0px 1px red;
+                border-radius: 4px;
+            }`;
+
+        iframe.contents().find("head").append('<style type="text/css">' + css + '</style>');
+        $rootScope.$broadcast('abe.preview.loaded');
+
+        /*scope.$apply(function () {
+
+        });*/
     };
 
     scope.$on('abe.save.complete', function reloadPreview() {
@@ -91,25 +115,29 @@ iframe {
     });
 
     ngAbeHighlighter.init(function (selector) {
-        let item = iframe.contents().find(selector)[0];
+
+        let item = iframe.contents().find(selector);
+
+        item.addClass('abe-highlighted');
 
         let old = {
-            border: item.style.border,
-            borderRadius: item.style.borderRadius,
-            boxShadow: item.style.boxShadow,
-            padding: item.style.padding
+            //border: item.style.border,
+            //borderRadius: item.style.borderRadius,
+            //boxShadow: item.style.boxShadow,
+            //padding: item.style.padding
         };
 
-        item.style.border = "5px solid red";
-        item.style.borderRadius = "10px";
-        item.style.boxShadow = "0 0 10px red";
-        item.style.padding = "2px";
+        //item.style.border = "5px solid red";
+        //item.style.borderRadius = "10px";
+        //item.style.boxShadow = "0 0 10px red";
+        //item.style.padding = "2px";
 
         return function () {
-            item.style.border = old.border;
-            item.style.borderRadius = old.borderRadius;
-            item.style.boxShadow = old.boxShadow;
-            item.style.padding = old.padding;
+            item.removeClass('abe-highlighted');
+            //item.style.border = old.border;
+            //item.style.borderRadius = old.borderRadius;
+            //item.style.boxShadow = old.boxShadow;
+            //item.style.padding = old.padding;
         }
     });
 
@@ -126,14 +154,14 @@ iframe {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-11-09 01:12:33</sys_created_on>
         <sys_id>17d9cf17db61230022757d9ebf961997</sys_id>
-        <sys_mod_count>179</sys_mod_count>
+        <sys_mod_count>202</sys_mod_count>
         <sys_name>ABE Preview</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>sp_widget_17d9cf17db61230022757d9ebf961997</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2019-01-04 00:15:43</sys_updated_on>
+        <sys_updated_on>2019-01-07 03:57:41</sys_updated_on>
         <template><![CDATA[<div id="abe-preview">
     <iframe ng-src="{{url}}"></iframe>
 </div>]]></template>

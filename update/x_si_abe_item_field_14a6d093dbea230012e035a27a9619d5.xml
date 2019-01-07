@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="x_si_abe_item_field">
     <x_si_abe_item_field action="INSERT_OR_UPDATE">
         <css_selector>main &gt; div:first-of-type</css_selector>
+        <default_image>a52b10e1db7e670027fb8a8b3a9619a7</default_image>
+        <default_string/>
         <description>The image that appears behind the background of the search box and tag line.</description>
         <document>be98a8d2cb20020000f8d856634c9c63</document>
         <field>background_image</field>
@@ -11,14 +13,14 @@
         <sys_created_by>dylan.lindgren</sys_created_by>
         <sys_created_on>2018-12-28 05:14:14</sys_created_on>
         <sys_id>14a6d093dbea230012e035a27a9619d5</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Background image</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>x_si_abe_item_field_14a6d093dbea230012e035a27a9619d5</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2019-01-03 00:56:31</sys_updated_on>
+        <sys_updated_on>2019-01-04 05:18:19</sys_updated_on>
         <table>sp_container</table>
         <type>image</type>
     </x_si_abe_item_field>

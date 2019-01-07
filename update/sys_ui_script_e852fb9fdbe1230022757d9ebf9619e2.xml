@@ -7,6 +7,8 @@
         <script><![CDATA[var ngAbe = angular.module('ngAbe', [])
     .service('NgAbeTransport', function ($rootScope, $http, ngAbeControl) {
 
+        let token = false;
+
         function saveVar(sassVar, sassVal) {
 
             $rootScope.$broadcast('abe.save.start');
@@ -38,7 +40,17 @@
             });
         }
 
+        function setToken (t) {
+            token = t;
+        }
+
+        function getToken (t) {
+            return token;
+        }
+
         return {
+            getToken: getToken,
+            setToken: setToken,
             saveVar: saveVar,
             saveField: saveField
         };
@@ -176,14 +188,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2018-11-09 04:10:00</sys_created_on>
         <sys_id>e852fb9fdbe1230022757d9ebf9619e2</sys_id>
-        <sys_mod_count>217</sys_mod_count>
+        <sys_mod_count>222</sys_mod_count>
         <sys_name>x_si_abe.ngAbe</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>sys_ui_script_e852fb9fdbe1230022757d9ebf9619e2</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2019-01-04 00:49:55</sys_updated_on>
+        <sys_updated_on>2019-01-07 04:08:00</sys_updated_on>
         <ui_type>1</ui_type>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>

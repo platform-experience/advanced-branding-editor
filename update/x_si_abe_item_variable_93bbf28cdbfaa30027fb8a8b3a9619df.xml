@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="x_si_abe_item_variable">
     <x_si_abe_item_variable action="INSERT_OR_UPDATE">
-        <css_selector>.navbar-inverse.navbar</css_selector>
+        <css_selector>header</css_selector>
         <default>#3a3f51</default>
         <description>The background color of the navbar at the top of the page</description>
         <group display_value="Navbar">90dd3383dbaa230012e035a27a9619d4</group>
@@ -11,14 +11,14 @@
         <sys_created_by>dylan.lindgren</sys_created_by>
         <sys_created_on>2018-12-31 01:10:28</sys_created_on>
         <sys_id>93bbf28cdbfaa30027fb8a8b3a9619df</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Navbar background</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>x_si_abe_item_variable_93bbf28cdbfaa30027fb8a8b3a9619df</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2019-01-03 00:55:39</sys_updated_on>
+        <sys_updated_on>2019-01-07 03:48:07</sys_updated_on>
         <type>color</type>
     </x_si_abe_item_variable>
 </record_update>
