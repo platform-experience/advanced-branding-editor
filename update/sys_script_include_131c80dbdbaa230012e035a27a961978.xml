@@ -9,7 +9,9 @@
         <script><![CDATA[var AbeHelper = Class.create();
 
 AbeHelper.prototype = {
+
     initialize: function () {
+
     },
 
     getGroups: function (portalId, groupId) {
@@ -179,6 +181,29 @@ AbeHelper.prototype = {
         return gr.update();
     },
 
+    processImage: function processImage (imageId) {
+
+        var gr = new GlideRecord('sys_attachment');
+
+        if(gr.get(imageId)) {
+
+            var tableName = 'ZZ_YY' + gr.getValue('table_name');
+            var tableSysId = gr.getValue('table_sys_id');
+            var fileName = gr.getValue('file_name');
+
+            gr.setValue('table_name', tableName);
+            gr.update();
+
+            var oldGr = new GlideRecord('sys_attachment');
+            oldGr.addQuery('table_name', tableName);
+            oldGr.addQuery('table_sys_id', tableSysId);
+            oldGr.addQuery('file_name', fileName);
+            oldGr.addQuery('sys_id', '!=', gr.getUniqueValue());
+
+            return oldGr.deleteMultiple();
+        }
+    },
+
     _buildGroup: function (groupGr) {
 
         return {
@@ -212,13 +237,13 @@ AbeHelper.prototype = {
         <sys_created_by>dylan.lindgren</sys_created_by>
         <sys_created_on>2018-12-28 04:27:47</sys_created_on>
         <sys_id>131c80dbdbaa230012e035a27a961978</sys_id>
-        <sys_mod_count>103</sys_mod_count>
+        <sys_mod_count>130</sys_mod_count>
         <sys_name>AbeHelper</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>sys_script_include_131c80dbdbaa230012e035a27a961978</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2019-01-07 01:59:24</sys_updated_on>
+        <sys_updated_on>2019-01-08 00:02:50</sys_updated_on>
     </sys_script_include>
 </record_update>

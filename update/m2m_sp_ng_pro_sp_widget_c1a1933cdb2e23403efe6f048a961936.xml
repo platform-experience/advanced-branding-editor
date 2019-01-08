@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_ng_pro_sp_widget">
     <m2m_sp_ng_pro_sp_widget action="INSERT_OR_UPDATE">
-        <sp_angular_provider display_value="ngAbeUnitVar">1651dbf8db2e23403efe6f048a9619df</sp_angular_provider>
+        <sp_angular_provider display_value="ngAbeVariableUnit">1651dbf8db2e23403efe6f048a9619df</sp_angular_provider>
         <sp_widget display_value="ABE Editor">85c90793db61230022757d9ebf961941</sp_widget>
         <sys_class_name>m2m_sp_ng_pro_sp_widget</sys_class_name>
         <sys_created_by>dylan.lindgren</sys_created_by>

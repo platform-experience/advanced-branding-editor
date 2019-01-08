@@ -4,7 +4,7 @@
         <consumes>application/json,application/xml,text/xml</consumes>
         <consumes_customized>false</consumes_customized>
         <default_operation_uri/>
-        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <enforce_acl>8936afdadbf6230027fb8a8b3a961955</enforce_acl>
         <http_method>POST</http_method>
         <name>Save Variable</name>
         <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
@@ -38,14 +38,14 @@
         <sys_created_by>dylan.lindgren</sys_created_by>
         <sys_created_on>2019-01-02 01:24:21</sys_created_on>
         <sys_id>f45115f8db3ee30012e035a27a96199b</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Save Variable</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>sys_ws_operation_f45115f8db3ee30012e035a27a96199b</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2019-01-04 00:50:23</sys_updated_on>
+        <sys_updated_on>2019-01-07 23:05:54</sys_updated_on>
         <web_service_definition display_value="Advanced Branding Editor">ec3191f8db3ee30012e035a27a9619ae</web_service_definition>
         <web_service_version/>
     </sys_ws_operation>

@@ -5,22 +5,22 @@
         <consumes_customized>false</consumes_customized>
         <default_operation_uri/>
         <enforce_acl>8936afdadbf6230027fb8a8b3a961955</enforce_acl>
-        <http_method>GET</http_method>
-        <name>Get Groups for Portal</name>
+        <http_method>POST</http_method>
+        <name>Image field post-process</name>
         <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
 
 	var pathParams = request.pathParams; 
-	var portalId = pathParams.portalId;
-
+	var imageId = pathParams.imageId;
+	
 	var ah = new AbeHelper();
-
-	response.setBody(ah.getGroups(portalId));
+	
+	ah.processImage(imageId);
 
 })(request, response);]]></operation_script>
-        <operation_uri>/api/x_si_abe/abe/portal/{portalId}/groups</operation_uri>
+        <operation_uri>/api/x_si_abe/abe/image/{imageId}/process</operation_uri>
         <produces>application/json,application/xml,text/xml</produces>
         <produces_customized>false</produces_customized>
-        <relative_path>/portal/{portalId}/groups</relative_path>
+        <relative_path>/image/{imageId}/process</relative_path>
         <request_example/>
         <requires_acl_authorization>true</requires_acl_authorization>
         <requires_authentication>true</requires_authentication>
@@ -28,16 +28,16 @@
         <short_description/>
         <sys_class_name>sys_ws_operation</sys_class_name>
         <sys_created_by>dylan.lindgren</sys_created_by>
-        <sys_created_on>2019-01-04 01:56:50</sys_created_on>
-        <sys_id>c60d27dddbba670027fb8a8b3a96191d</sys_id>
-        <sys_mod_count>4</sys_mod_count>
-        <sys_name>Get Groups for Portal</sys_name>
+        <sys_created_on>2019-01-07 23:05:28</sys_created_on>
+        <sys_id>b68b6766db72630027fb8a8b3a961921</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name>Image field post-process</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
-        <sys_update_name>sys_ws_operation_c60d27dddbba670027fb8a8b3a96191d</sys_update_name>
+        <sys_update_name>sys_ws_operation_b68b6766db72630027fb8a8b3a961921</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2019-01-07 23:06:11</sys_updated_on>
+        <sys_updated_on>2019-01-08 00:02:57</sys_updated_on>
         <web_service_definition display_value="Advanced Branding Editor">ec3191f8db3ee30012e035a27a9619ae</web_service_definition>
         <web_service_version/>
     </sys_ws_operation>

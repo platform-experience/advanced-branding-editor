@@ -3,19 +3,19 @@
         <annotation>Use the title and logo of your portal to represent your brand across all it's pages.</annotation>
         <name>Title and Logo</name>
         <order>100</order>
-        <portal display_value="Service Portal1234567">81b75d3147032100ba13a5554ee4902b</portal>
+        <portal display_value="Service Portal">81b75d3147032100ba13a5554ee4902b</portal>
         <search>?</search>
         <sys_class_name>x_si_abe_group</sys_class_name>
         <sys_created_by>dylan.lindgren</sys_created_by>
         <sys_created_on>2018-12-28 03:23:29</sys_created_on>
         <sys_id>ee9d7f43dbaa230012e035a27a9619e7</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Title and Logo</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>x_si_abe_group_ee9d7f43dbaa230012e035a27a9619e7</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2019-01-04 00:09:59</sys_updated_on>
+        <sys_updated_on>2019-01-07 22:52:26</sys_updated_on>
     </x_si_abe_group>
 </record_update>

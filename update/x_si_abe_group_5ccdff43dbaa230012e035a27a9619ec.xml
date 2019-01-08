@@ -3,7 +3,7 @@
         <annotation/>
         <name>Tag Line and Background</name>
         <order>150</order>
-        <portal display_value="Service Portal1234567">81b75d3147032100ba13a5554ee4902b</portal>
+        <portal display_value="Service Portal">81b75d3147032100ba13a5554ee4902b</portal>
         <search>?</search>
         <sys_class_name>x_si_abe_group</sys_class_name>
         <sys_created_by>dylan.lindgren</sys_created_by>

@@ -6,24 +6,22 @@
         <sys_created_by>dylan.lindgren</sys_created_by>
         <sys_created_on>2018-12-21 00:22:00</sys_created_on>
         <sys_id>8a01dbf8db2e23403efe6f048a9619d7</sys_id>
-        <sys_mod_count>27</sys_mod_count>
+        <sys_mod_count>28</sys_mod_count>
         <sys_name>ng-abe-variable</sys_name>
         <sys_package display_value="Advanced Branding Editor" source="x_si_abe">d5e53253db21230022757d9ebf9619b4</sys_package>
         <sys_policy/>
         <sys_scope display_value="Advanced Branding Editor">d5e53253db21230022757d9ebf9619b4</sys_scope>
         <sys_update_name>sp_ng_template_8a01dbf8db2e23403efe6f048a9619d7</sys_update_name>
         <sys_updated_by>dylan.lindgren</sys_updated_by>
-        <sys_updated_on>2019-01-03 01:17:29</sys_updated_on>
+        <sys_updated_on>2019-01-08 00:14:40</sys_updated_on>
         <template><![CDATA[<div class="abe-variable">
     <div ng-switch="item.type">
         <div ng-switch-when="color"
-             ng-abe-color-var></div>
-        <div ng-switch-when="resource_url"
-             ng-abe-url-var></div>
+             ng-abe-variable-color></div>
         <div ng-switch-when="image"
-             ng-abe-image-var></div>
+             ng-abe-variable-image></div>
         <div ng-switch-when="unit"
-             ng-abe-unit-var></div>
+             ng-abe-variable-unit></div>
     </div>
     <div class="av-reset" ng-if="!valIsDefault()">
         <button title="${Reset to default value}"
