@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><database>
-    <element attributes="update_synch=true" extends="x_si_abe_item" label="Variable" max_length="40" name="x_si_abe_item_variable" type="collection">
-        <element label="Default" mandatory="true" max_length="1024" name="default" type="string"/>
-        <element label="SASS variable" mandatory="true" max_length="128" name="sass_variable" type="string"/>
-    </element>
-</database>
