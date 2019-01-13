@@ -39,7 +39,7 @@ There are two tables that contain the core configuration of the Advanced Brandin
 
 These are groups of branding items.
 
-<img src="images/branding-group.png" height="400px">
+<img src="images/branding-group.png" height="200px">
 
 For each group, a search string can be defined, and when you expand the group to edit it the preview will append that string to the URL of the portal, changing the page displayed in the preview. It is thus recommended to group items based on what pages they appear on.
  This is a useful feature when you have variables which are used in widgets not on the home page. 
