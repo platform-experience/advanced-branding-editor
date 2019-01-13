@@ -1,3 +1,4 @@
 remote_theme: pmarsceill/just-the-docs
 site:
   title: Advanced Branding Editor 
+theme: jekyll-theme-minimal
